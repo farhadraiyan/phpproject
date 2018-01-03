@@ -1,0 +1,48 @@
+
+#socialnet,#socialnet1,#socialnet2,#socialnet3
+{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+}
+#cp
+{
+    padding-left: 18%;
+}
+#create, #login
+{
+
+    width: 30%;
+    border: solid 1px darkgreen;
+    background-color: #d4edda;
+    margin: 5% 30% 5% 35%;
+    padding: 1%;
+    border-radius: 5px;
+
+}
+.crt, .log
+{
+    border-radius: 5px;
+    width: 100%;
+
+}
+
+#btncrt, #btnlog
+{
+    background-color: #218838;
+    padding: 1%;
+}
+.log_create
+{
+    padding: 10%;
+}
+.hm
+{
+    padding-left: 45%;
+}
+#tbl_discussion,#tbl_recent,#tbl_popular
+{
+    width: 100%;
+
+    text-align: center;
+}
