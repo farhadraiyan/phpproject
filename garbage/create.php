@@ -1,15 +1,15 @@
 <?php include '../all php/setup/pathname.php' //here i define all path?>
-<?php include '../all php/process.php' //here all functionality?>
+<?php include '../all php/process.php' //here i define all path?>
 <?php $page_title="Registration Page";?>
 <?php include html_path.ds.'header.php' ?>
-<?php register();?>
+
 <section>
     <div class="row">
         <div class="col">
             <form id="create" method="post" enctype="multipart/form-data">
                 <div class="form-group" >
                     <h2 class="log_create">Create Your Account</h2>
-<!--                    --><?php //include '../all php/errors.php' ?>
+                    <?php include '../all php/errors.php' ?>
                     <label >Student ID</label></br>
                     <input class="crt" type="text" name="stuid"/></br></br>
                     <label >User Name</label></br>
@@ -17,7 +17,7 @@
                     <label >Email Address</label></br>
                     <input class="crt" type="text" name="email"/></br></br>
                     <label >Password</label></br>
-                    <input class="crt" type="password" name="password"/></br></br>
+                    <input class="crt" type="text" name="password"/></br></br>
                     <label >Program Name</label></br>
                     <select class="crt" name="program">
                         <option value="T127">Computer Programmer Analyst (T127)</option>

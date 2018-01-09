@@ -2,23 +2,20 @@
 <?php include '../all php/process.php' //here i define all path?>
 <?php $page_title="Login Page";?>
 <?php include html_path . ds . 'header.php' ?>
-<?php
-login();
-?>
 
 
-    <section class="container">
+    <section>
         <div class="row">
             <div class="col">
                 <form id="login" method="post">
                     <div class="form-group" >
                         <h2 class="log_create">Sign in to Continue</h2>
-<!--                        --><?php //include '../all php/errors.php' ?>
+                        <?php include '../all php/errors.php' ?>
 
                         <label >User Name or Email Address</label></br>
                         <input class="log" type="text" name="username"/></br></br>
                         <label>Password</label></br>
-                        <input class="log" type="password" name="password"></br></br>
+                        <input class="log" type="text" name="password"></br></br>
                         <input id="btnlog" class="log" type="submit" name="login" value="Login"/>
                     </div>
                     <p>Don't have an Account?<a href="create.php">      Create new Account</a></p>
@@ -28,6 +25,11 @@ login();
 
         </div>
     </section>
+
+
+
+
+
 
 
 <?php include html_path . ds . 'footer.php' ?>

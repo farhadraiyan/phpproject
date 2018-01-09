@@ -3,3 +3,4 @@ function sayhi($greet)
 {
     return $greet;
 }
+

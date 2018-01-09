@@ -1,5 +1,5 @@
 <?php
-
+@session_start();
 //$page_title=isset($page_title)?$page_title:"Default";
 $paget=$page_title??"Default";//tenary operator for php 7
 ?>
@@ -28,17 +28,34 @@ $paget=$page_title??"Default";//tenary operator for php 7
 <nav class="navbar navbar-inverse bg-light">
     <div class="container">
         <ul class="nav justify-content-between">
-            <li><a class="nav-link text-dark" href="../public/Discussion.php">Discussion Board</a></li>
+            <li><a class="nav-link text-dark" href="../garbage/Discussion.php">Discussion Board</a></li>
             <li><a class="nav-link text-dark" href="../public/Recent.php">Recent Stories</a></li>
             <li><a class="nav-link text-dark" href="../public/Popular.php">Popular Stories</a></li>
         </ul>
         <form style="padding-left: 30%"  class="form-inline navbar-form">
             <input type="text" class="form-control" placeholder="Search" name="search">
         </form>
-        <ul class="nav justify-content-between">
-
+        <?php
+        if(isset($_SESSION['stuid']))
+        {
+            echo
+            ' <a href="../public/logout.php">Logout</a>';//for login success
+        }
+        elseif (isset($_SESSION['username']))//for registration success
+        {
+            echo
+            ' <a href="../public/logout.php">Logout</a>';
+        }
+        else{//default header
+            echo
+            '<ul class="nav justify-content-between">
             <li ><a href="../public/login.php">Login</a></li>
+            <li ><a href="../public/create.php">Register</a></li>
 
-        </ul>
+            </ul>';
+        }
+        ?>
+
+
     </div>
 </nav>

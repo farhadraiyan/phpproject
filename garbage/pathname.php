@@ -7,10 +7,14 @@ define("func_path",allphp_path.ds."functions");
 define("html_path",project_path.ds."all html");
 define("public_path",project_path.ds."public");
 //Database setup
-$dbserver="localhost";
-$dbUser="root";
-$pass="";
-$dbname="php_group_project";
+//$db_connection=mysqli_connect("localhost","root","","php_group_project");
+try {
+    $db_connection = new PDO("mysql:host=localhost;dbname=php_group_project", "root", "");
+}
+catch(Exception $e)
+{
+    print $e->getMessage();
+}
 
-$db_conctn=mysqli_connect($dbserver,$dbUser,$pass,$dbname);
+
 include func_path.ds.'allfunctions.php';
