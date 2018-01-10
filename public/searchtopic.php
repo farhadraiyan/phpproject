@@ -2,9 +2,6 @@
 <?php $page_title="Registration Page";?>
 <?php include html_path.ds.'header.php' ?>
 <div class="container">
-<?php
-
-show_topic();
-?>
+    <?php show_search_results(); ?>
 </div>
 <?php include html_path.ds.'footer.php' ?>

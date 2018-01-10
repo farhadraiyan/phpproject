@@ -4,18 +4,10 @@
     <section class="container ">
         <div class="row">
             <div class="col">
-                <?php echo sayhi("hi there") ?>
-                afdsasdfasd sdfad sdfsadfsad sdcsdfsad sdfasdfa sdfsadfdsa adfsdfsad sadfsdfsad dfasdf
-                sdfdsfasd adfasdfasd asdfasdf dfsdfsad asdfasdfa asdfsadf asdfsd adfcsd sadfda adsdf a
+                <h1>This is the Contact Page</h1>
+
             </div>
-            <div class="col">
-                afdsasdfasd sdfad sdfsadfsad sdcsdfsad sdfasdfa sdfsadfdsa adfsdfsad sadfsdfsad dfasdf
-                sdfdsfasd adfasdfasd asdfasdf dfsdfsad asdfasdfa asdfsadf asdfsd adfcsd sadfda adsdf a
-            </div>
-            <div class="col">
-                afdsasdfasd sdfad sdfsadfsad sdcsdfsad sdfasdfa sdfsadfdsa adfsdfsad sadfsdfsad dfasdf
-                sdfdsfasd adfasdfasd asdfasdf dfsdfsad asdfasdfa asdfsadf asdfsd adfcsd sadfda adsdf akjkjkkjjkkk
-            </div>
+
         </div>
     </section>
 <?php include html_path.ds.'footer.php' ?>

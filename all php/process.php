@@ -1,8 +1,9 @@
 <?php
 session_start();
-//register part
+include 'setup/pathname.php'; //here i define all path
 //$errors=[];
 
+//function for registration
 function register()
 {
     global $db_conctn;
@@ -95,8 +96,7 @@ VALUES('$college_id','$username','$enc_password','$email','$program','$image','$
 //}//end of else for register
 }
 
-
-//login part
+//function to login
 function login()
 {
     global $db_conctn;
@@ -144,32 +144,31 @@ function login()
     }
 }
 
-//Topic insert processing
-
-if(isset($_POST['create_topic']))
+//function to create a topic and insert data to database
+function create_topic()
 {
-    $title=mysqli_real_escape_string($db_conctn,$_POST['topic_title']);
-    $desc=mysqli_real_escape_string($db_conctn,$_POST['topic_des']);
-    $cont=mysqli_real_escape_string($db_conctn,$_POST['topic_cont']);
+    global $db_conctn;
+    if(isset($_POST['create_topic']))
+    {
+        $title=mysqli_real_escape_string($db_conctn,$_POST['topic_title']);
+        $desc=mysqli_real_escape_string($db_conctn,$_POST['topic_des']);
+        $cont=mysqli_real_escape_string($db_conctn,$_POST['topic_cont']);
 
-    //process special data
-    $user=$_SESSION['username'];
-    $date = date('Y/m/d H:i:s');
-    //insert user data
-    $sql_insert3="INSERT INTO topics
+        //process special data
+        $user=$_SESSION['username'];
+        $date = date('Y/m/d H:i:s');
+        //insert user data
+        $sql_insert3="INSERT INTO topics
 (Topic_title,Topic_description,topic_cont,Student_name,Date_posted) 
 VALUES('$title','$desc','$cont','$user','$date')";
-    mysqli_query($db_conctn,$sql_insert3);
+        mysqli_query($db_conctn,$sql_insert3);
 
-    header("location: ../public/index.php?");
+        header("location: ../public/index.php?");
 
+    }
 }
 
-
-
 //function for topic view
-
-
 function view_all_topic()
 {
     global $db_conctn,$results_tqry, $tqry;
@@ -190,6 +189,8 @@ foreach ($results_tqry as $tqry){
     echo '</tr>';
 }
 }
+
+//function for show an individual topic with its reply
 function show_topic()
 {
 global $db_conctn;
@@ -206,7 +207,7 @@ $topic_row=mysqli_fetch_assoc($res);
     echo "<h3><a href='showtopic.php?tid=".$t_id."&title=".$t."'>$t</a></h3>";
 echo "<h4>$des</h4>";
     echo "<div style='width:60%;'><p>$cont</p>
- <h4><a href='reply.php?tid=".$t_id."&title=".$t."'>Reply</a></h4>;
+ <h4><a href='reply.php?tid=".$t_id."&title=".$t."'>Reply</a></h4>
 </div>";
     //show the replies
     echo "<div style='padding-left: 80px'>";
@@ -215,6 +216,8 @@ echo "<h4>$des</h4>";
     echo "</div>";
 
 }
+
+//function to reply on a specific topic
 function reply_topic()
 {
     global $db_conctn;
@@ -235,6 +238,9 @@ VALUES('$t_id','$rplr_name','$cmnt','$date_rply')";
     }
 
 }
+
+//function to show all reply with its parent topic, it has called from show_topic function
+
 function show_reply($t_i)
 {
     global $db_conctn;
@@ -261,22 +267,62 @@ function show_reply($t_i)
 
 
 }
-function topic_authentication($sub)
+//authentication if user logged in or not to create a topic
+function topic_authentication()
 {
 
 
-    if(isset($sub))
-    {
         if(isset($_SESSION['username']))
         {
-            header("location: topic.php");
+
+            return true;
 
         }
         else{
             echo "<pre style='color: red;'><b>Please login to create a topic</b></pre>";
 
         }
-    }
 
 
 }
+//function for searching data
+function search_topic()
+{
+
+
+    if(isset($_POST['search']))
+    {
+        $user_srch=$_POST['search'];
+        header("location: ../public/searchtopic.php?usersrch=$user_srch");
+    }
+
+}
+//to show all data in search page
+function show_search_results()
+{
+    global $db_conctn;
+
+    $user_srch=$_GET['usersrch'];
+    $srch_qry="SELECT * FROM topics WHERE Topic_title='$user_srch'";
+    $res=mysqli_query($db_conctn,$srch_qry);
+    $topic_row=mysqli_fetch_assoc($res);
+    $t_id=$topic_row['Topic_id'];
+    $s= $topic_row['Student_name'];
+    $t= $topic_row['Topic_title'];
+    $des=$topic_row['Topic_description'];
+    $cont=$topic_row['Topic_cont'];
+
+    echo "<div> Created by <b> $s</b></div>";
+    echo "<h3><a href='showtopic.php?tid=".$t_id."&title=".$t."'>$t</a></h3>";
+    echo "<h4>$des</h4>";
+    echo "<div style='width:60%;'><p>$cont</p>
+ <h4><a href='reply.php?tid=".$t_id."&title=".$t."'>Reply</a></h4>
+</div>";
+    //show the replies
+    echo "<div style='padding-left: 80px'>";
+    echo "<h4 style='color:green;'>All Replies</h4>";
+    echo "</div>";
+
+
+}
+

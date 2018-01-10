@@ -28,15 +28,18 @@ $paget=$page_title??"Default";//tenary operator for php 7
 <nav class="navbar navbar-inverse bg-light">
     <div class="container">
         <ul class="nav justify-content-between">
-            <li><a class="nav-link text-dark" href="../garbage/Discussion.php">Discussion Board</a></li>
+            <li><a class="nav-link text-dark" href="../public/index.php">Home</a></li>
             <li><a class="nav-link text-dark" href="../public/Recent.php">Recent Stories</a></li>
             <li><a class="nav-link text-dark" href="../public/Popular.php">Popular Stories</a></li>
+            <li><a class="nav-link text-dark" href="../public/viewprofile.php">View Profiles</a></li>
+
         </ul>
-        <form style="padding-left: 30%"  class="form-inline navbar-form">
+        <form method="post" class="form-inline navbar-form">
             <input type="text" class="form-control" placeholder="Search" name="search">
         </form>
         <?php
-        if(isset($_SESSION['stuid']))
+        if(isset($_SESSION['stuid'])&&isset($_SESSION['username']))//just differntiate from register success
+            //using both variable, because in login i setup both session var
         {
             echo
             ' <a href="../public/logout.php">Logout</a>';//for login success
